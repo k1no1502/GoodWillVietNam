@@ -1,0 +1,49 @@
+// 1) Prefill from uploaded Excel/CSV template (only load data, không insert)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['donation_excel']) && $_FILES['donation_excel']['error'] === UPLOAD_ERR_OK) {
+    $filePath = $_FILES['donation_excel']['tmp_name'];
+    $prefill = [
+        'item_name' => [],
+        'description' => [],
+        'category_id' => [],
+        'quantity' => [],
+        'unit' => [],
+        'condition_status' => [],
+        'estimated_value' => [],
+        'image_urls' => []
+    ];
+
+    if (($handle = fopen($filePath, 'r')) !== false) {
+        $header = fgetcsv($handle);
+        while (($row = fgetcsv($handle)) !== false) {
+            if (count($row) < 7) {
+                continue;
+            }
+            $value = $row[6] ?? '';
+            $imgUrls = $row[7] ?? '';
+            list($name, $desc, $catName, $qty, $unit, $cond) = $row;
+            $name = trim($name);
+            if ($name === '') {
+                continue;
+            }
+            $catKey = mb_strtolower(trim($catName));
+            $catId = $categoryNameToId[$catKey] ?? 0;
+            $prefill['item_name'][] = $name;
+            $prefill['description'][] = trim($desc);
+            $prefill['category_id'][] = $catId;
+            $prefill['quantity'][] = max(1, (int)$qty);
+            $prefill['unit'][] = $unit !== '' ? $unit : 'cái';
+            $prefill['condition_status'][] = $cond !== '' ? $cond : 'good';
+            $prefill['estimated_value'][] = is_numeric($value) ? (float)$value : 0;
+            $prefill['image_urls'][] = $imgUrls;
+        }
+        fclose($handle);
+    }
+
+    if (!empty($prefill['item_name'])) {
+        $_POST = array_merge($_POST, $prefill);
+        $success = 'Đã tải dữ liệu từ file. Vui lòng kiểm tra và bấm gửi quyên góp.';
+    } else {
+        $error = 'Không đọc được dữ liệu hợp lệ từ file. Vui lòng kiểm tra nội dung.';
+    }
+}
+

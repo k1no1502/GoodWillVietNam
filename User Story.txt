@@ -1,0 +1,36 @@
+cUser Stories - Goodwill Vietnam
+
+Chu thich trang thai: Ready = da hoat dong trong ma nguon; Planned/TODO = duoc de cap hoac dang thieu trong admin panel.
+
+Guest/Visitor
+- As a guest, I want to xem trang chu, about, danh sach chien dich va trang shop o che do xem, so that toi hieu muc tieu cua nen tang truoc khi dang ky (Ready).
+- As a guest, I want to loc/sort danh sach san pham theo danh muc, loai gia (mien phi/gia re), tim kiem ten va xem chi tiet san pham, so that toi co the danh gia vat pham dang co (Ready).
+- As a guest, I want to xem danh sach chien dich va tien do (progress, ngay con lai, so tinh nguyen vien), so that toi biet chien dich nao dang mo (Ready).
+
+Registered User (Customer/Donor)
+- As a user, I want to dang ky, dang nhap, dang xuat va thay doi mat khau (password hash), so that toi co tai khoan an toan de su dung tat ca tinh nang (Ready).
+- As a user, I want to cap nhat ho so ca nhan (profile) va luu dia chi giao hang, so that thong tin duoc dung cho don hang va lien he (Ready).
+- As a donor, I want to gui don quyengop vat pham kem hinh anh (toi da 5), chon danh muc, nhap mo ta, chon ngay gio nhan hang, so that toi co the dong gop dung nhu cau (Ready; status theo doi trong my-donations).
+- As a donor, I want to theo doi lich su quyengop va trang thai duyet/tu choi, so that toi biet vat pham cua minh da duoc xu ly chua (Ready).
+- As a shopper, I want to duyệt shop, loc theo danh muc/loai gia, xem nhan “Con lai X” va tinh trang (available/sold/reserved/hidden), so that toi chon dung vat pham (Ready).
+- As a shopper, I want to them/xoa/chinh so luong trong gio hang, xoa tat ca, va thay badge gio hang cap nhat realtime, so that toi kiem soat chi phi (Ready; APIs add/update/remove/clear/get-cart-count).
+- As a shopper, I want to checkout voi dia chi giao hang va hinh thuc thanh toan, de he thong tru kho, tu dong danh dau sold khi het hang, tao don hang va nhan trang order-success (Ready).
+- As a shopper, I want to xem lich su don hang, chi tiet don va trang theo doi don, so that toi biet trang thai giao hang (Ready; my-orders, order-detail, order-tracking).
+- As a campaign creator, I want to tao chien dich (ten, ma, mo ta, thoi gian, hinh anh) va danh sach vat pham can (ten, danh muc, so luong, don vi, ghi chu), so that cong dong co the dong gop dung nhu cau (Ready; submit status pending).
+- As a user, I want to dong gop vao chien dich bang chon nhanh vat pham can thiet hoac nhap moi, upload anh, so that tien do chien dich duoc cap nhat tu dong (Ready; donate-to-campaign, triggers cap nhat quantity_received/progress).
+- As a user, I want to dang ky tinh nguyen vien cho chien dich kem ky nang, thoi gian, loi nhan, so that ban to chuc sap xep nguon luc (Ready; auto approve qua APIs register-volunteer*).
+- As a user, I want to xem chi tiet chien dich (progress bar tung item, danh sach tinh nguyen vien), so that toi biet chien dich con thieu gi (Ready).
+
+Admin
+- As an admin, I want to dang nhap va truy cap dashboard, so that toi xem thong ke tong quan (nguoi dung, quyengop, vat pham, danh muc, don hang), bieu do (donations by month, category split), hoat dong gan day va muc cho duyet (Ready).
+- As an admin, I want to quan ly quyengop: xem danh sach, loc theo trang thai, xem chi tiet va anh, duyet de tu dong dua vao kho, hoac tu choi kem ly do, so that vat pham hop le moi vao he thong (Ready).
+- As an admin, I want to quan ly kho: dat loai gia (mien phi/gia re/thuong), thay doi quantity, status (available/reserved/sold/damaged), bat/tat hien thi shop, gan danh muc, so that hang ton kho duoc kiem soat (Ready; sync voi checkout va duyet donation).
+- As an admin, I want to quan ly chiendich: duyet/tu choi/ket thuc chien dich va xem dong gop, so that chi trien khai chien dich hop le (Planned/TODO; admin/campaigns.php chua hoan tat).
+- As an admin, I want to quan ly don hang (duyet, doi trang thai, theo doi giao hang), so that chuoi giao hang duoc kiem soat (Planned/TODO; admin/orders.php duoc note trong docs).
+- As an admin, I want to quan ly user (khoa/mo, thay doi role), so that he thong an toan va dung vai tro (Planned/TODO; admin/users.php duoc note trong docs).
+- As an admin, I want to cau hinh he thong va xem bao cao Chart.js, so that toi theo doi suc khoe hoat dong (Ready; dashboard + get-statistics API).
+- As an Admin, I want to can 
+System/Non-functional
+- As the system owner, I want to dam bao bao mat (password_hash, PDO prepared statements, session auth, file upload MIME checks) va phan quyen Admin/User/Guest, so that du lieu an toan (Ready).
+- As the system, I want to duy tri dong bo giua donations -> inventory -> shop va checkout tru kho/mark sold, so that ton kho khong sai lech (Ready; triggers/logic trong checkout va sync).
+- As the system, I want to co APIs realtime cho cart count, statistics, volunteer registration, so that UI cap nhat mượt (Ready).

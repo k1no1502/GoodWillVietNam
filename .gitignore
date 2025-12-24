@@ -1,0 +1,66 @@
+# Goodwill Vietnam - Git Ignore
+
+# Uploaded files
+uploads/*
+!uploads/.gitkeep
+!uploads/donations/
+uploads/donations/*
+!uploads/donations/.gitkeep
+
+# Configuration files (sensitive)
+config/database.php
+.env
+
+# Logs
+logs/
+*.log
+error.log
+access.log
+
+# Cache
+cache/
+tmp/
+temp/
+
+# Backup files
+backups/
+*.sql.gz
+*.sql.bak
+*.backup
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+*.swp
+*.swo
+*~
+
+# Composer
+/vendor/
+composer.phar
+composer.lock
+
+# Node modules (if using npm)
+node_modules/
+package-lock.json
+
+# Build files
+/dist/
+/build/
+
+# PHP
+*.php~
+*.phps
+
+# Session files
+sessions/
+
+# Test files
+phpunit.xml
+.phpunit.result.cache

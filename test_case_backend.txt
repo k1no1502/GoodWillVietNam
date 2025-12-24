@@ -1,0 +1,5 @@
+﻿No | Module | Function | Test case ID | Test case name | Preconditions | Steps | Expected Result | Actual Result | Status | Tester
+29 | Security | Access control | SEC_001 | Enforce auth by role | Guest and normal user accounts | 1. Try accessing profile.php as guest 2. Try admin/dashboard.php as normal user | Guest redirected to login; non-admin receives 403/redirect; no data leaked | Not executed | Not Run | QA
+30 | Security | File upload validation | SEC_002 | Reject invalid donation file | Logged-in donor | 1. Submit donation with .exe file 2. Submit with >5 images | System blocks invalid MIME/size; shows error; no file stored | Not executed | Not Run | QA
+31 | System | Sync inventory/order | SYS_001 | Stock deduction reliability | Item qty1 available | 1. Add item to cart 2. Checkout 3. Reopen shop listing | Item marked Sold/out of stock; quantity not negative; hidden from add-to-cart | Not executed | Not Run | QA
+32 | System | Session timeout | SYS_002 | Session expiry | User logged in, session timeout configured | 1. Stay idle past timeout 2. Attempt action | User forced to login again; session token invalidated | Not executed | Not Run | QA

@@ -1,0 +1,23 @@
+                                    <option value="cÃ¡i">CÃ¡i</option>
+                                    <option value="bá»?">Bá»?</option>
+                                    <option value="kg">Kg</option>
+                                    <option value="cuá»?n">Cuá»?n</option>
+                                    <option value="thÃ¹ng">ThÃ¹ng</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="condition_status" class="form-label">TÃ¬nh tráº¡ng</label>
+                                <select class="form-select" id="condition_status" name="condition_status">
+                                    <option value="new">Má»?i</option>
+                                    <option value="like_new">NhÆ° má»?i</option>
+                                    <option value="good" selected>Tá»?t</option>
+                                    <option value="fair">KhÃ¡</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="images" class="form-label">HÃ¬nh áº£nh (tÃ¹y chá»n)</label>
+                            <input type="file" class="form-control" id="images" name="images[]" multiple accept="image/*">
+                        </div>

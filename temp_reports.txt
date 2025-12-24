@@ -1,0 +1,40 @@
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 admin-content">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2"><i class="bi bi-graph-up me-2"></i>BÃ¡o cÃ¡o thá»‘ng kÃª</h1>
+                </div>
+
+                <!-- Date Range Filter -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <?php $exportQuery = http_build_query(['start_date' => $start_date, 'end_date' => $end_date]); ?>
+                        <form method="GET" class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">T ¯® ngAÿy</label>
+                                <input type="date" 
+                                       class="form-control" 
+                                       name="start_date" 
+                                       value="<?php echo htmlspecialchars($start_date); ?>">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Ž? §¨n ngAÿy</label>
+                                <input type="date" 
+                                       class="form-control" 
+                                       name="end_date" 
+                                       value="<?php echo htmlspecialchars($end_date); ?>">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">&nbsp;</label>
+                                <div class="d-flex gap-2">
+                                    <button type="submit" class="btn btn-primary flex-fill">
+                                        <i class="bi bi-search me-1"></i>Xem bA­o cA­o
+                                    </button>
+                                    <a href="reports_export.php?<?php echo $exportQuery; ?>" class="btn btn-success" title="Xuat Excel">
+                                        <i class="bi bi-download"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+

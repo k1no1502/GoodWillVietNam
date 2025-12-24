@@ -1,0 +1,27 @@
+{
+    "name": "goodwill-vietnam/charity-system",
+    "description": "Website thiện nguyện với PHP + MySQL + Bootstrap 5",
+    "type": "project",
+    "keywords": ["charity", "donation", "php", "mysql", "bootstrap"],
+    "license": "MIT",
+    "require": {
+        "php": ">=8.0",
+        "ext-fileinfo": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-pdo": "*",
+        "phpoffice/phpspreadsheet": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "includes/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

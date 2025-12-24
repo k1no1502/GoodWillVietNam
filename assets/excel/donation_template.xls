@@ -1,0 +1,8 @@
+﻿<html><head><meta charset='utf-8'><style>table{font-family:'Times New Roman',serif;font-size:12pt;border-collapse:collapse;} th,td{border:1px solid #ccc;padding:6px;}</style></head><body>
+<table>
+<tr><th>Tên vật phẩm</th><th>Mô tả</th><th>Danh mục</th><th>Số lượng</th><th>Đơn vị</th><th>Tình trạng</th><th>Giá trị ước tính</th><th>Liên kết ảnh</th></tr>
+<tr><td>Áo khoác</td><td>Áo khoác gió</td><td>Quần áo</td><td>5</td><td>cái</td><td>good</td><td>500000</td><td>http://example.com/ao1.jpg</td></tr>
+<tr><td>Sách giáo khoa lớp 5</td><td>Bộ 10 quyển</td><td>Giáo dục</td><td>2</td><td>bộ</td><td>like_new</td><td>200000</td><td>http://example.com/sach1.jpg, http://example.com/sach2.png</td></tr>
+</table>
+<p style='font-family: "Times New Roman", serif; font-size:11pt;'>Lưu ý: Sau khi chỉnh sửa, hãy lưu lại dưới dạng CSV UTF-8 để nhập lên hệ thống.</p>
+</body></html>

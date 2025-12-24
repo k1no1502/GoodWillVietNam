@@ -1,0 +1,347 @@
+================================================================================
+  HƯỚNG DẪN CÀI ĐẶT GOODWILL VIETNAM
+  Website Thiện Nguyện - PHP + MySQL + Bootstrap 5
+================================================================================
+
+I. YÊU CẦU HỆ THỐNG
+────────────────────────────────────────────────────────────────────────────
+
+✓ XAMPP (hoặc WAMP/LAMP)
+  - Apache 2.4+
+  - PHP 8.0+
+  - MySQL 8.0+
+  - phpMyAdmin
+
+✓ Trình duyệt web hiện đại
+  - Google Chrome
+  - Mozilla Firefox
+  - Microsoft Edge
+
+✓ Dung lượng ổ cứng: Tối thiểu 500MB
+
+
+II. CÀI ĐẶT XAMPP
+────────────────────────────────────────────────────────────────────────────
+
+1. Tải XAMPP:
+   → Truy cập: https://www.apachefriends.org/
+   → Chọn phiên bản Windows
+   → Tải và cài đặt
+
+2. Cài đặt XAMPP:
+   → Chạy file cài đặt
+   → Chọn thư mục cài đặt: C:\xampp
+   → Chọn các component: Apache, MySQL, PHP, phpMyAdmin
+   → Hoàn tất cài đặt
+
+3. Khởi động XAMPP:
+   → Mở XAMPP Control Panel
+   → Click "Start" cho Apache
+   → Click "Start" cho MySQL
+   → Đợi đến khi hiển thị màu xanh
+
+
+III. CÀI ĐẶT DỰ ÁN
+────────────────────────────────────────────────────────────────────────────
+
+BƯỚC 1: COPY FILE DỰ ÁN
+─────────────────────────
+1. Mở thư mục: C:\xampp\htdocs
+2. Tạo thư mục mới: "Cap 1 - 2"
+3. Copy toàn bộ file dự án vào thư mục này
+   
+   Cấu trúc sau khi copy:
+   C:\xampp\htdocs\Cap 1 - 2\
+   ├── admin/
+   ├── api/
+   ├── assets/
+   ├── config/
+   ├── database/
+   ├── includes/
+   ├── uploads/
+   ├── index.php
+   ├── login.php
+   └── ...
+
+BƯỚC 2: TẠO CƠ SỞ DỮ LIỆU
+───────────────────────────
+1. Mở trình duyệt
+2. Truy cập: http://localhost/phpmyadmin
+3. Click tab "New" (hoặc "Mới")
+4. Nhập tên database: goodwill_vietnam
+5. Chọn Collation: utf8mb4_unicode_ci
+6. Click "Create"
+
+BƯỚC 3: IMPORT DỮ LIỆU
+───────────────────────
+1. Trong phpMyAdmin, chọn database "goodwill_vietnam"
+2. Click tab "Import" (hoặc "Nhập")
+3. Click "Choose File" (hoặc "Chọn file")
+4. Chọn file: database/schema.sql
+5. Click "Go" (hoặc "Thực hiện")
+6. Đợi import hoàn tất
+7. Lặp lại với file: database/update_schema.sql
+
+   ⚠️ QUAN TRỌNG: Import đúng thứ tự:
+      1. schema.sql (trước)
+      2. update_schema.sql (sau)
+
+BƯỚC 4: CẤU HÌNH KẾT NỐI
+──────────────────────────
+1. Mở file: config/database.php
+2. Kiểm tra cấu hình (mặc định):
+   
+   DB_HOST: localhost
+   DB_NAME: goodwill_vietnam
+   DB_USER: root
+   DB_PASS: (để trống)
+
+3. Nếu MySQL của bạn có mật khẩu:
+   → Sửa DB_PASS thành mật khẩu của bạn
+
+4. Lưu file
+
+BƯỚC 5: TẠO THƯ MỤC UPLOAD
+────────────────────────────
+1. Kiểm tra thư mục: uploads/
+2. Tạo thư mục con: uploads/donations/
+3. Phân quyền ghi cho thư mục (Windows):
+   → Chuột phải uploads/ → Properties
+   → Tab Security → Edit
+   → Chọn Users → Tick Full Control
+   → Click OK
+
+
+IV. KIỂM TRA CÀI ĐẶT
+────────────────────────────────────────────────────────────────────────────
+
+1. Mở trình duyệt
+2. Truy cập: http://localhost/Cap%201%20-%202/
+3. Trang chủ hiển thị → Cài đặt thành công! ✓
+
+Nếu gặp lỗi:
+→ Xem phần "V. XỬ LÝ LỖI THƯỜNG GẶP"
+
+
+V. XỬ LÝ LỖI THƯỜNG GẶP
+────────────────────────────────────────────────────────────────────────────
+
+❌ LỖI: "Connection failed" hoặc "Database connection error"
+───────────────────────────────────────────────────────────
+NGUYÊN NHÂN: Không kết nối được database
+CÁCH SỬA:
+   1. Kiểm tra MySQL đã chạy trong XAMPP Control Panel
+   2. Kiểm tra file config/database.php
+   3. Kiểm tra tên database: goodwill_vietnam
+   4. Restart Apache và MySQL
+
+❌ LỖI: "Table doesn't exist"
+───────────────────────────────
+NGUYÊN NHÂN: Chưa import database hoặc import thiếu
+CÁCH SỬA:
+   1. Vào phpMyAdmin
+   2. Xóa database goodwill_vietnam (nếu có)
+   3. Tạo lại database mới
+   4. Import lại schema.sql
+   5. Import lại update_schema.sql
+
+❌ LỖI: "Failed to move uploaded file"
+───────────────────────────────────────
+NGUYÊN NHÂN: Không có quyền ghi vào thư mục uploads
+CÁCH SỬA:
+   1. Kiểm tra thư mục uploads/ tồn tại
+   2. Phân quyền Full Control cho thư mục
+   3. Restart Apache
+
+❌ LỖI: Trang trắng, không hiển thị gì
+───────────────────────────────────────
+NGUYÊN NHÂN: Lỗi PHP không hiển thị
+CÁCH SỬA:
+   1. Mở file php.ini: C:\xampp\php\php.ini
+   2. Tìm: display_errors = Off
+   3. Sửa thành: display_errors = On
+   4. Lưu và restart Apache
+   5. Xem lỗi cụ thể trên màn hình
+
+❌ LỖI: "Port 80 is already in use"
+────────────────────────────────────
+NGUYÊN NHÂN: Port 80 đang được sử dụng (Skype, IIS...)
+CÁCH SỬA:
+   1. Tắt Skype hoặc ứng dụng sử dụng port 80
+   2. HOẶC đổi port Apache:
+      - Mở file: C:\xampp\apache\conf\httpd.conf
+      - Tìm: Listen 80
+      - Sửa thành: Listen 8080
+      - Truy cập: http://localhost:8080/
+
+❌ LỖI: CSS/JS không load
+──────────────────────────
+NGUYÊN NHÂN: Đường dẫn sai hoặc file không tồn tại
+CÁCH SỬA:
+   1. Kiểm tra thư mục assets/ tồn tại
+   2. Kiểm tra thư mục assets/css/ và assets/js/
+   3. Clear cache trình duyệt (Ctrl + F5)
+
+
+VI. TÀI KHOẢN ĐĂNG NHẬP
+────────────────────────────────────────────────────────────────────────────
+
+ADMIN:
+  Email:    admin@goodwillvietnam.com
+  Password: password
+  Quyền:    Toàn quyền quản trị
+
+⚠️ QUAN TRỌNG:
+   → Đổi mật khẩu admin sau khi đăng nhập lần đầu
+   → Không share thông tin đăng nhập
+
+USER MẪU:
+  → Đăng ký tài khoản mới tại trang Register
+  → Sử dụng email thật để nhận thông báo
+
+
+VII. HƯỚNG DẪN SỬ DỤNG
+────────────────────────────────────────────────────────────────────────────
+
+1. TRUY CẬP TRANG CHỦ
+   → http://localhost/Cap%201%20-%202/
+
+2. ĐĂNG NHẬP ADMIN
+   → Click "Đăng nhập" ở góc trên bên phải
+   → Nhập email: admin@goodwillvietnam.com
+   → Nhập password: password
+   → Click "Đăng nhập"
+   → Tự động chuyển đến Admin Panel
+
+3. QUẢN LÝ HỆ THỐNG
+   → Dashboard: Xem thống kê tổng quan
+   → Quyên góp: Duyệt/từ chối quyên góp
+   → Kho hàng: Thiết lập giá bán (Miễn phí/Giá rẻ)
+   → Đơn hàng: Xử lý đơn hàng từ người dùng
+
+4. ĐĂNG KÝ TÀI KHOẢN USER
+   → Click "Đăng ký"
+   → Điền đầy đủ thông tin
+   → Click "Đăng ký"
+   → Đăng nhập với tài khoản vừa tạo
+
+5. QUYÊN GÓP VẬT PHẨM
+   → Đăng nhập với tài khoản user
+   → Click "Quyên góp" trên menu
+   → Điền thông tin vật phẩm
+   → Upload hình ảnh
+   → Click "Gửi quyên góp"
+   → Chờ admin duyệt
+
+6. MUA/NHẬN VẬT PHẨM
+   → Click "Vật phẩm" trên menu
+   → Duyệt hoặc lọc vật phẩm:
+      • Theo danh mục
+      • Theo loại giá (Miễn phí/Giá rẻ)
+   → Click "Thêm vào giỏ"
+   → Click "Giỏ hàng" để xem
+   → Click "Thanh toán"
+   → Điền địa chỉ giao hàng
+   → Hoàn tất đơn hàng
+
+
+VIII. CẤU TRÚC THƯ MỤC CHI TIẾT
+────────────────────────────────────────────────────────────────────────────
+
+Cap 1 - 2/
+│
+├── admin/                      # Trang quản trị
+│   ├── dashboard.php           # Tổng quan
+│   ├── donations.php           # Quản lý quyên góp
+│   ├── inventory.php           # Quản lý kho hàng
+│   ├── orders.php              # Quản lý đơn hàng
+│   ├── users.php               # Quản lý người dùng
+│   └── includes/
+│       └── sidebar.php         # Menu sidebar
+│
+├── api/                        # API endpoints
+│   ├── add-to-cart.php         # API thêm giỏ hàng
+│   ├── get-statistics.php      # API thống kê
+│   └── ...
+│
+├── assets/                     # Tài nguyên tĩnh
+│   ├── css/
+│   │   └── style.css           # CSS tùy chỉnh
+│   ├── js/
+│   │   └── main.js             # JavaScript tùy chỉnh
+│   └── images/
+│       └── no-image.jpg        # Ảnh mặc định
+│
+├── config/                     # Cấu hình
+│   └── database.php            # Kết nối database
+│
+├── database/                   # SQL files
+│   ├── schema.sql              # Schema cơ bản
+│   └── update_schema.sql       # Cập nhật schema
+│
+├── includes/                   # Thư viện PHP
+│   └── functions.php           # Hàm tiện ích
+│
+├── uploads/                    # Thư mục upload
+│   └── donations/              # Ảnh quyên góp
+│
+├── index.php                   # Trang chủ
+├── login.php                   # Trang đăng nhập
+├── register.php                # Trang đăng ký
+├── donate.php                  # Trang quyên góp
+├── items.php                   # Danh sách vật phẩm
+├── cart.php                    # Giỏ hàng
+├── checkout.php                # Thanh toán
+├── README.md                   # Hướng dẫn chi tiết
+└── INSTALL.txt                 # File này
+
+
+IX. THÔNG TIN KỸ THUẬT
+────────────────────────────────────────────────────────────────────────────
+
+DATABASE TABLES:
+  • users              - Người dùng
+  • roles              - Vai trò
+  • donations          - Quyên góp
+  • inventory          - Kho hàng
+  • orders             - Đơn hàng
+  • order_items        - Chi tiết đơn hàng
+  • cart               - Giỏ hàng
+  • categories         - Danh mục
+  • campaigns          - Chiến dịch
+  • feedback           - Phản hồi
+  • activity_logs      - Nhật ký
+  • system_settings    - Cài đặt
+
+DATABASE VIEWS:
+  • v_statistics       - Thống kê
+  • v_donation_details - Chi tiết quyên góp
+  • v_saleable_items   - Vật phẩm bán hàng
+
+SECURITY:
+  • Password: bcrypt hash
+  • SQL: PDO Prepared Statements
+  • Session: Secure session management
+  • Upload: MIME type validation
+  • Input: Sanitize & validate
+
+
+X. LIÊN HỆ & HỖ TRỢ
+────────────────────────────────────────────────────────────────────────────
+
+Nếu gặp vấn đề không giải quyết được:
+
+1. Check log file:
+   → PHP errors: C:\xampp\apache\logs\error.log
+   → MySQL errors: C:\xampp\mysql\data\*.err
+
+2. Kiểm tra lại từng bước cài đặt
+
+3. Restart Apache và MySQL
+
+4. Xóa cache trình duyệt (Ctrl + Shift + Del)
+
+
+════════════════════════════════════════════════════════════════════════════
+                    CHÚC BẠN CÀI ĐẶT THÀNH CÔNG! 🎉
+════════════════════════════════════════════════════════════════════════════
